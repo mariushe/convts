@@ -1,4 +1,4 @@
-import { addToMatrix, dot, multiply, subtract } from "../math/math";
+import { add, dot, multiply, subtract } from "../math/math";
 import Layer from "./Layer";
 
 class ConnectedLayer implements Layer {
@@ -6,7 +6,7 @@ class ConnectedLayer implements Layer {
     [1, 0],
     [0, 1],
   ];
-  bias = [1,1];
+  bias = [[1,1]];
   input: number[][] = [];
   inputSize: number;
   outputSize: number;
@@ -16,7 +16,7 @@ class ConnectedLayer implements Layer {
   }
   forwardPropagation(input: number[][]): number[][] {
     this.input = input;
-    return addToMatrix(dot(input, this.weight), this.bias);
+    return add(dot(input, this.weight), this.bias);
   }
   backPropagation(outputError: number[][], learningRate: number): number[][] {
     const inputError = dot(outputError, this.weight);

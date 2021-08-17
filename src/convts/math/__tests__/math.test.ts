@@ -1,5 +1,5 @@
 import React from "react";
-import { dot } from "../math";
+import { add, dot, multiply, subtract } from "../math";
 
 describe("Dot product", () => {
   test("Dot products of same size", () => {
@@ -40,3 +40,131 @@ describe("Dot product", () => {
     ]);
   })
 });
+
+
+describe("Add", () => {
+  test("Add a 3,2 matrix and 1,2 together", () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ];
+    const b = [
+      [1, 10],
+    ];
+    expect(
+      add(a,b)
+    ).toEqual([
+      [2, 12],
+      [4, 14],
+      [6, 16],
+    ]);
+
+    expect(
+      add(b,a)
+    ).toEqual([
+      [2, 12],
+      [4, 14],
+      [6, 16],
+    ]);
+  });
+
+  test("Add matrixes of same dimention", () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ];
+    expect(
+      add(a,a)
+    ).toEqual([
+      [2, 4],
+      [6, 8],
+      [10, 12],
+    ]);
+  })
+});
+
+
+describe("Subtract", () => {
+  test("Subtract a 3,2 matrix and 1,2 together", () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ];
+    const b = [
+      [1, 10],
+    ];
+    expect(
+      subtract(a,b)
+    ).toEqual([
+      [0, -8],
+      [2, -6],
+      [4, -4],
+    ]);
+
+    expect(
+      subtract(b,a)
+    ).toEqual([
+      [0, 8],
+      [-2, 6],
+      [-4, 4],
+    ]);
+  });
+
+  test("Subtract matrixes of same dimention", () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ];
+    expect(
+      subtract(a,a)
+    ).toEqual([
+      [0, 0],
+      [0, 0],
+      [0, 0],
+    ]);
+  })
+});
+
+
+
+describe("Multiply", () => {
+  test("Multiply a 3,2 matrix and 1,2 together", () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ];
+    const b = [
+      [1, 10],
+    ];
+    expect(
+      multiply(a,b)
+    ).toEqual([
+      [1, 20],
+      [3, 40],
+      [5, 60],
+    ]);
+
+  });
+
+  test("Subtract matrixes of same dimention", () => {
+    const a = [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ];
+    expect(
+      multiply(a,a)
+    ).toEqual([
+      [1, 4],
+      [9, 16],
+      [25, 36],
+    ]);
+  })
+});
+
+
