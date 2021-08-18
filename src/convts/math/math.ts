@@ -36,6 +36,28 @@ export const multiply = (a: number[][], b: number | number[][]): number[][] => {
 
 };
 
+export const divide = (a: number[][], b: number | number[][]): number[][] => {
+  if (typeof b === 'number') {
+    return a.map((_, i) => a[i].map((_, j) => a[i][j] / b));
+  }
+  if (a.length === b.length ) {
+    return a.map((_,i) => a[0].map((_, j) => {
+      return a[i][j] / b[i][j]
+    }))
+  } else if (a.length === 1) {
+    return b.map((_,i) => b[0].map((_, j) => {
+      return a[0][j] / b[i][j]
+    }))
+  } else if (b.length === 1) {
+    return a.map((_,i) => a[0].map((_, j) => {
+      return a[i][j] / b[0][j]
+    }))
+  }
+
+  throw Error(`Dimentions didn't match. a=${a} b=${b}`)
+
+};
+
 
 export const add = (a: number[][], b: number[][]): number[][] => {
   if (a.length === b.length ) {

@@ -1,4 +1,4 @@
-import { Activation, ActivationPrime } from "../activations/activations";
+import { Activation } from "../activations/activations";
 import { multiply } from "../math/math";
 import Layer from "./Layer";
 
@@ -7,7 +7,7 @@ class ActivationLayer implements Layer {
   activationPrime;
   input: number[][] = [];
   output : number[][] = [];
-  constructor(activation: Activation, activationPrime: ActivationPrime) {
+  constructor(activation: Activation, activationPrime: Activation) {
     this.activation = activation;
     this.activationPrime = activationPrime;
   }
@@ -18,7 +18,6 @@ class ActivationLayer implements Layer {
     return this.output;
   }
   backPropagation(outputError: number[][], learningRate: number): number[][] {
-    
     return multiply(this.activationPrime(this.input), this.output);
   }
 }
