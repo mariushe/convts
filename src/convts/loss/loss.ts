@@ -1,9 +1,14 @@
 import { divide, multiply, subtract } from "../math/math";
 
-export type Loss = (expected: number[][], predicted: number[][]) => number;
+export type LossFunction = (expected: number[][], predicted: number[][]) => number;
 export type LossPrime = (expected: number[][], predicted: number[][]) => number[][];
 
-export const meanSquaredError: Loss = (
+export interface Loss {
+    loss: LossFunction;
+    lossPrime: LossPrime;
+}
+
+export const meanSquaredError: LossFunction = (
   expected: number[][],
   predicted: number[][]
 ) => {
@@ -37,3 +42,8 @@ export const meanSquaredErrorPrime: LossPrime = (
   let count = countElements(expected);
   return multiply(divide(subtract(predicted, expected), count), 2);
 };
+
+export const Mse: Loss = {
+    loss: meanSquaredError,
+    lossPrime: meanSquaredErrorPrime,
+}
