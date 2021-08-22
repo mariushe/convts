@@ -20,7 +20,7 @@ describe("Network", () => {
         Mse
     );
 
-    network.fit(trainingData, categories, 10)
+    network.fit(trainingData, categories, 1)
 
 
     expect(true).toEqual(true);

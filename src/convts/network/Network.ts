@@ -24,6 +24,7 @@ class Network {
       const err = trainingData
         .map((x, i) => {
           const output = this.forwardPropagate(x);
+          console.log("Expected", categories[i], "Predicted", output)
           this.backPropagate(categories[i], output);
           return this.loss.loss(categories[i], output);
         })
