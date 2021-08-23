@@ -50,6 +50,10 @@ describe("Dot product", () => {
     expect(dot( [ [ 1 ], [ 2 ], [ 3 ] ], [ [ 10 ] ])).toEqual([[ 10], [20], [30]]);
     
   })
+  test("Dot matrix 1,2 and 1,3", () => {
+    expect(dot( [[ 1],[2]], [ [ 10, 20, 30 ] ])).toEqual([[ 10, 20, 30], [20, 40, 60]]);
+    
+  })
 });
 
 describe("Add", () => {

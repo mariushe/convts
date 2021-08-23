@@ -38,6 +38,7 @@ class Network {
 
   private backPropagate(expected: number[][], predicted: number[][]) {
     let error = this.loss.lossPrime(expected, predicted);
+    console.log("LOSS PRIME ", error)
     for (var i = this.layers.length - 1; i >= 0; i--) {
       error = this.layers[i].backPropagation(error, this.learningRate);
     }

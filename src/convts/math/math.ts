@@ -12,6 +12,15 @@ export const dot = (a: number[][], b: number[][]): number[][] => {
     })];
   }
 
+  
+  if (a[0].length === 1 && b.length === 1) {
+    return a.map((a1, i1) => {
+      return b[0].map((_, i2) => {
+        return a[i1][0] * b[0][i2];
+      }).filter((n) => !isNaN(n));
+    });  
+  }
+
   return a.map((a1, i1) => {
     return a.map((_, i2) => {
       return Array.from(Array(a1.length).keys()).reduce((acc, q) => {

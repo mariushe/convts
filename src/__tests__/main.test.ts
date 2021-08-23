@@ -16,5 +16,7 @@ describe("Start of convts", () => {
      * 3. When we got an output -- calculate error
      * 4. Finally we can adjust a given parameter (weight or bias) by subtracting the derivative of the error with respect to the parameter itself.
      * 5. We iterate through that process.
+     * 
+     * 
      */
 })

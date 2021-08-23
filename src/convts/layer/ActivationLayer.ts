@@ -13,16 +13,11 @@ class ActivationLayer implements Layer {
   }
 
   forwardPropagation(input: number[][]): number[][] {
-      console.log("ACTIVATION FORWARD", input)
     this.input = input;
     this.output = this.activation(input);
     return this.output;
   }
   backPropagation(outputError: number[][], learningRate: number): number[][] {
-      console.log("ACTIVATION")
-      console.log("INPUT", this.input)
-      console.log("OUTPUT_ERROR", outputError)
-      console.log("RETURNING", multiply(this.activationPrime(this.input), outputError))
       console.log("Activation layer: outputError[",outputError,"], input[",this.input,"], activationPrime[" +this.activationPrime(this.input) + "], multiplied[" + multiply(this.activationPrime(this.input), outputError) + "]" )
     return multiply(this.activationPrime(this.input), outputError);
   }
