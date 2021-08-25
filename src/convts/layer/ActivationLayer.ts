@@ -18,7 +18,7 @@ class ActivationLayer implements Layer {
     return this.output;
   }
   backPropagation(outputError: number[][], learningRate: number): number[][] {
-      console.log("Activation layer: outputError[",outputError,"], input[",this.input,"], activationPrime[" +this.activationPrime(this.input) + "], multiplied[" + multiply(this.activationPrime(this.input), outputError) + "]" )
+      //console.log("Activation layer: outputError[",outputError,"], input[",this.input,"], activationPrime[" +this.activationPrime(this.input) + "], multiplied[" + multiply(this.activationPrime(this.input), outputError) + "]" )
     return multiply(this.activationPrime(this.input), outputError);
   }
 }

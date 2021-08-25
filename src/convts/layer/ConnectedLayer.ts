@@ -22,7 +22,7 @@ class ConnectedLayer implements Layer {
   backPropagation(outputError: number[][], learningRate: number): number[][] {
     const inputError = dot(outputError, transpose(this.weight));
     const weightError = dot(transpose(this.input), outputError);
-    console.log("CONNECTED LAYER - weights[", this.weight,"], ","outputError[", outputError,"], inputError[",inputError,"], weightError[",weightError,"]");
+    //console.log("CONNECTED LAYER - weights[", this.weight,"], ","outputError[", outputError,"], inputError[",inputError,"], weightError[",weightError,"]");
     this.weight = subtract(this.weight, multiply(weightError, learningRate));
     this.bias = subtract(this.bias, multiply(outputError, learningRate));
     

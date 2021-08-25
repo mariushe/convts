@@ -1,5 +1,5 @@
 import React from "react";
-import { Relu, ReluPrime } from "../../activations/activations";
+import { LeakyRelu, LeakyReluPrime, Relu, ReluPrime } from "../../activations/activations";
 import ActivationLayer from "../../layer/ActivationLayer";
 import ConnectedLayer from "../../layer/ConnectedLayer";
 import { Mse } from "../../loss/loss";
@@ -13,9 +13,9 @@ describe("Network", () => {
     const network = Network.create(
         [
             new ConnectedLayer(2,3),
-            new ActivationLayer(Relu,ReluPrime),
+            new ActivationLayer(LeakyRelu,LeakyReluPrime),
             new ConnectedLayer(3,1),
-            new ActivationLayer(Relu,ReluPrime)
+            new ActivationLayer(LeakyRelu,LeakyReluPrime)
         ], 
         Mse
     );
