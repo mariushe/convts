@@ -11,7 +11,7 @@ function App() {
   const simpleNetwork = createSimpleNetwork();
 
   return (
-    <div className="min-h-screen bg-gray-800 text-white">
+    <div className="min-h-screen bg-gray-900 text-white">
       <main>
         <DisplayNetwork network={simpleNetwork} />
       </main>
