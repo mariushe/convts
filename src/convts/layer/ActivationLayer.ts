@@ -12,6 +12,18 @@ class ActivationLayer implements Layer {
     this.activationPrime = activationPrime;
   }
 
+  name(): string {
+    return "Activation"
+  }
+
+  getInputSize(): number | undefined {
+    return undefined;
+  }
+
+  getOutputSize(): number | undefined {
+    return undefined;
+  }
+
   forwardPropagation(input: number[][]): number[][] {
     this.input = input;
     this.output = this.activation(input);

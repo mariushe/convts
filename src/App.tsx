@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import DisplayNetwork from "./components/network/DisplayNetwork";
+import { createSimpleNetwork } from "./convts/network/networks";
 
 function App() {
+  const trainingData = [[[0, 0]], [[0, 1]], [[1, 0]], [[1, 1]]];
+  const categories = [[[0]], [[1]], [[1]], [[0]]];
+
+  const simpleNetwork = createSimpleNetwork();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-800 text-white">
+      <main>
+        <DisplayNetwork network={simpleNetwork} />
+      </main>
     </div>
   );
 }

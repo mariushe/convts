@@ -14,9 +14,22 @@ class ConnectedLayer implements Layer {
     this.weight = createRandomWeights(inputSize, outputSize);
     this.bias = createRandomWeights(1, outputSize);
   }
+
+  getInputSize(): number {
+    return this.inputSize;
+  }
+
+  getOutputSize(): number {
+    return this.outputSize;
+  }
+
+  name(): string {
+    return "Connected";
+  }
+
   forwardPropagation(input: number[][]): number[][] {
     this.input = input;
-    const t =  add(dot(input, this.weight), this.bias);
+    const t = add(dot(input, this.weight), this.bias);
     return t;
   }
   backPropagation(outputError: number[][], learningRate: number): number[][] {
@@ -25,7 +38,7 @@ class ConnectedLayer implements Layer {
     //console.log("CONNECTED LAYER - weights[", this.weight,"], ","outputError[", outputError,"], inputError[",inputError,"], weightError[",weightError,"]");
     this.weight = subtract(this.weight, multiply(weightError, learningRate));
     this.bias = subtract(this.bias, multiply(outputError, learningRate));
-    
+
     return inputError;
   }
 }
