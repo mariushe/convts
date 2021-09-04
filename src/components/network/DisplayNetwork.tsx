@@ -7,7 +7,7 @@ const DisplayLayer = ({ layer }: { layer: Layer }) => {
     <div>
       <div
         className={
-          "p-4 m-4 max-w-sm mx-auto bg-gray-700 rounded-xl shadow-md flex items-center space-x-4"
+          "px-4 p-2 m-4 max-w-sm mx-auto bg-gray-700 rounded-xl shadow-md flex items-center space-x-4"
         }
       >
         {layer.name()}{" "}
