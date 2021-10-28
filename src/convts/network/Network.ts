@@ -16,11 +16,16 @@ class Network {
     return new Network(layers, loss);
   }
 
+  public predict(data: number[][]) {
+    return this.forwardPropagate(data);
+  }
+
   public fit(
     trainingData: number[][][],
     categories: number[][][],
     epochs: number
   ) {
+    let lastEpochError = -1;
     for (let epoch = 1; epoch <= epochs; epoch++) {
       const err = trainingData
         .map((x, i) => {
@@ -31,10 +36,14 @@ class Network {
         })
         .reduce((acc, v) => acc + v, 0);
 
+      
+      const error = err / trainingData.length;
       logger.info(
-        `Epoch ${epoch}/${epochs} error=${err / trainingData.length}`
+        `Epoch ${epoch}/${epochs} error=${error}`
       );
+      lastEpochError=error;
     }
+    return lastEpochError
   }
 
   private backPropagate(expected: number[][], predicted: number[][]) {
@@ -50,6 +59,8 @@ class Network {
       return layer.forwardPropagation(output);
     }, data);
   }
+
+  
 }
 
 export default Network;
