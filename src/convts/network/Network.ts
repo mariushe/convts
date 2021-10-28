@@ -1,5 +1,6 @@
 import React from "react";
 import Layer from "../layer/Layer";
+import { logger } from "../log/Logger";
 import { Loss } from "../loss/loss";
 
 class Network {
@@ -24,13 +25,13 @@ class Network {
       const err = trainingData
         .map((x, i) => {
           const output = this.forwardPropagate(x);
-          console.log("Expected", categories[i], "Predicted", output)
+          logger.debug({"Expected": categories[i], "Predicted": output})
           this.backPropagate(categories[i], output);
           return this.loss.loss(categories[i], output);
         })
         .reduce((acc, v) => acc + v, 0);
 
-      console.log(
+      logger.info(
         `Epoch ${epoch}/${epochs} error=${err / trainingData.length}`
       );
     }
@@ -38,7 +39,7 @@ class Network {
 
   private backPropagate(expected: number[][], predicted: number[][]) {
     let error = this.loss.lossPrime(expected, predicted);
-    console.log("LOSS PRIME ", error)
+    logger.debug({"LOSS PRIME ": error})
     for (var i = this.layers.length - 1; i >= 0; i--) {
       error = this.layers[i].backPropagation(error, this.learningRate);
     }

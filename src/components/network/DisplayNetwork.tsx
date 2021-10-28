@@ -23,8 +23,8 @@ const Layers = ({ network }: { network: Network }) => {
   return (
     <section>
       <h1 className={"text-3xl"}>Layers</h1>
-      {network.layers.map((l) => (
-        <DisplayLayer layer={l} />
+      {network.layers.map((l, i) => (
+        <DisplayLayer key={`layer_${i}`} layer={l} />
       ))}
     </section>
   );
