@@ -1,7 +1,7 @@
 {
   "name": "convts",
   "version": "0.1.0",
-  "homepage": "http://mariushe.github.io/convts",
+  "homepage": "https://mariushe.github.io/convts",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.2.0",
