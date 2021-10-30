@@ -2,6 +2,7 @@ import React from "react";
 import Layer from "../layer/Layer";
 import { logger } from "../log/Logger";
 import { Loss } from "../loss/loss";
+import { NeuronListener } from "../recorder/NeuronListener";
 
 class Network {
   layers: Layer[];

@@ -1,5 +1,6 @@
 import { Activation } from "../activations/activations";
 import { multiply } from "../math/math";
+import { NeuronListener } from "../recorder/NeuronListener";
 import Layer from "./Layer";
 
 class ActivationLayer implements Layer {
@@ -7,9 +8,13 @@ class ActivationLayer implements Layer {
   activationPrime;
   input: number[][] = [];
   output : number[][] = [];
-  constructor(activation: Activation, activationPrime: Activation) {
+  index: number;
+  neuronListener: NeuronListener;
+  constructor(index: number, activation: Activation, activationPrime: Activation, neuronListener: NeuronListener) {
     this.activation = activation;
     this.activationPrime = activationPrime;
+    this.index = index;
+    this.neuronListener = neuronListener;
   }
 
   name(): string {
@@ -27,6 +32,9 @@ class ActivationLayer implements Layer {
   forwardPropagation(input: number[][]): number[][] {
     this.input = input;
     this.output = this.activation(input);
+    if (this.neuronListener) {
+      this.neuronListener.recordNeurons(this.index, this.output)
+    }
     return this.output;
   }
   backPropagation(outputError: number[][], learningRate: number): number[][] {

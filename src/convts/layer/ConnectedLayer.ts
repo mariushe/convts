@@ -1,4 +1,6 @@
+import { logger } from "../log/Logger";
 import { add, dot, multiply, subtract, transpose } from "../math/math";
+import { NeuronListener } from "../recorder/NeuronListener";
 import { createRandomWeights } from "../weight/weight";
 import Layer from "./Layer";
 
@@ -8,11 +10,15 @@ class ConnectedLayer implements Layer {
   input: number[][] = [];
   inputSize: number;
   outputSize: number;
-  constructor(inputSize: number, outputSize: number) {
+  index: number;
+  neuronListener?: NeuronListener
+  constructor(index: number, inputSize: number, outputSize: number, neuronListener?: NeuronListener) {
+    this.index = index;
     this.inputSize = inputSize;
     this.outputSize = outputSize;
     this.weight = createRandomWeights(inputSize, outputSize);
     this.bias = createRandomWeights(1, outputSize);
+    this.neuronListener = neuronListener
   }
 
   getInputSize(): number {
@@ -30,6 +36,9 @@ class ConnectedLayer implements Layer {
   forwardPropagation(input: number[][]): number[][] {
     this.input = input;
     const t = add(dot(input, this.weight), this.bias);
+    if (this.neuronListener) {
+      this.neuronListener.recordNeurons(this.index, t)
+    }
     return t;
   }
   backPropagation(outputError: number[][], learningRate: number): number[][] {
