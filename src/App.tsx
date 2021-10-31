@@ -6,29 +6,11 @@ import { createSimpleNetwork } from "./convts/network/networks";
 import Network from "./convts/network/Network";
 import { NeuronListener } from "./convts/recorder/NeuronListener";
 import Neuron from "./components/network/Neuron";
+import NeuralRenderer from "./components/network/NeuralRenderer";
 
 
 
-const NeuralRenderer = ({
-  lastUpdate,
-  neuronListener,
-}: {
-  lastUpdate: number;
-  neuronListener: NeuronListener;
-}) => {
-  return (
-    <div>
-      Last update{lastUpdate}
-      {Object.values(neuronListener.result).map((n) => (
-        <div style={{ display: "flex" }}>
-          {n[0].map((nn) => (
-            <Neuron probability={nn} />
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-};
+
 
 function App() {
   const [lastUpdate, setLastUpdate] = useState(Date.now());

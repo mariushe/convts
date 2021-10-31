@@ -1,6 +1,6 @@
 import { logger } from "../log/Logger";
 import { add, dot, multiply, subtract, transpose } from "../math/math";
-import { NeuronListener } from "../recorder/NeuronListener";
+import { NeuronListener, NeuronResult } from "../recorder/NeuronListener";
 import { createRandomWeights } from "../weight/weight";
 import Layer from "./Layer";
 
@@ -37,7 +37,7 @@ class ConnectedLayer implements Layer {
     this.input = input;
     const t = add(dot(input, this.weight), this.bias);
     if (this.neuronListener) {
-      this.neuronListener.recordNeurons(this.index, t)
+      this.neuronListener.recordNeurons(this.index, {layerName: "Connected", result: t, inputSize: this.inputSize, outputSize: this.outputSize}  as NeuronResult)
     }
     return t;
   }

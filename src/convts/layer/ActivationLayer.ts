@@ -1,6 +1,6 @@
 import { Activation } from "../activations/activations";
 import { multiply } from "../math/math";
-import { NeuronListener } from "../recorder/NeuronListener";
+import { NeuronListener, NeuronResult } from "../recorder/NeuronListener";
 import Layer from "./Layer";
 
 class ActivationLayer implements Layer {
@@ -33,7 +33,7 @@ class ActivationLayer implements Layer {
     this.input = input;
     this.output = this.activation(input);
     if (this.neuronListener) {
-      this.neuronListener.recordNeurons(this.index, this.output)
+      this.neuronListener.recordNeurons(this.index, {layerName: "Activation", result: this.output, inputSize: input[0].length, outputSize: this.output[0].length} as NeuronResult)
     }
     return this.output;
   }

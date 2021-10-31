@@ -1,11 +1,17 @@
 
+export interface NeuronResult {
+    inputSize: number;
+    outputSize: number;
+    layerName: string;
+    result: number[][];
+}
 
 export class NeuronListener {
 
     callback: (index: number, input: any) => void
     record: boolean = false
     lastUpdate: number = Date.now();
-    result: {[_: string]: number[][]} = {}
+    result: {[_: string]: NeuronResult} = {}
 
     constructor(callback: (index: number, input: any) => void) {
       this.callback = callback
