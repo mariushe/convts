@@ -8,10 +8,6 @@ import { NeuronListener } from "./convts/recorder/NeuronListener";
 import Neuron from "./components/network/Neuron";
 import NeuralRenderer from "./components/network/NeuralRenderer";
 
-
-
-
-
 function App() {
   const [lastUpdate, setLastUpdate] = useState(Date.now());
   const [neuronListener, setNeuronListener] = useState<NeuronListener>(
@@ -28,17 +24,25 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <main>
-        <DisplayNetwork network={network} />
-        <button
-          onClick={() => {
-            setLastEpochError(network.fit(trainingData, categories, 1000));
-            neuronListener.startRecording();
-          }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-        >
-          Create and train
-        </button>
+      <main className={"p-10"}>
+        {!lastEpochError && (
+          <div className={"flex flex-col items-center"}>
+            <DisplayNetwork network={network} />
+            <div className="flex flex-col items-center">
+              <button
+                onClick={() => {
+                  setLastEpochError(
+                    network.fit(trainingData, categories, 1000)
+                  );
+                  neuronListener.startRecording();
+                }}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              >
+                Train network
+              </button>
+            </div>
+          </div>
+        )}
         {lastEpochError && <p>Error after last epoch: {lastEpochError}</p>}
         {lastEpochError && (
           <p

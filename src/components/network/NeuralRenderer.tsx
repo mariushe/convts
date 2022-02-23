@@ -31,10 +31,15 @@ const NeuralRenderer = ({
   lastUpdate: number;
   neuronListener: NeuronListener;
 }) => {
+
+  if (!Object.keys(neuronListener.result).length) {
+    return <></>
+  }
+
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-3xl md:text-4xl font-medium mb-2">
-        Network visualization
+      <h2 className="text-3l md:text-4xl font-medium mb-4">
+        Trained network
       </h2>
 
       {Object.values(neuronListener.result).map((n) => (

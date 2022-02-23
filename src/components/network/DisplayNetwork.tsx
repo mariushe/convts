@@ -22,7 +22,6 @@ const DisplayLayer = ({ layer }: { layer: Layer }) => {
 const Layers = ({ network }: { network: Network }) => {
   return (
     <section>
-      <h1 className={"text-3xl"}>Layers</h1>
       {network.layers.map((l, i) => (
         <DisplayLayer key={`layer_${i}`} layer={l} />
       ))}
@@ -32,7 +31,8 @@ const Layers = ({ network }: { network: Network }) => {
 
 const DisplayNetwork = ({ network }: { network: Network }) => {
   return (
-    <div>
+    <div className="flex flex-col items-center">
+      <h2 className="text-3xl md:text-4xl font-medium mb-2">Network architecture</h2>
       <Layers network={network} />
     </div>
   );
